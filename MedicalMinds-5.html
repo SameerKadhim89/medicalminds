@@ -1,0 +1,3383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedicalMinds - الشبكة الطبية المتخصصة</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="MedicalMinds">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MedicalBook">
+    <meta name="description" content="الشبكة الاجتماعية الطبية المتخصصة للأطباء والمهنيين الصحيين">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0088cc">
+    
+    <!-- PWA Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ec4899;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f472b6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' rx='40' fill='url(%23grad)'/%3E%3Ccircle cx='100' cy='100' r='70' fill='white' opacity='0.95'/%3E%3Cpath d='M100 120 L85 105 Q78 98 78 88 Q78 78 85 74 Q92 71 100 80 Q108 71 115 74 Q122 78 122 88 Q122 98 115 105 Z' fill='%23ec4899'/%3E%3Crect x='95' y='65' width='10' height='20' rx='2' fill='%23ec4899'/%3E%3Crect x='90' y='70' width='20' height='10' rx='2' fill='%23ec4899'/%3E%3Ccircle cx='90' cy='95' r='6' fill='none' stroke='%23ec4899' stroke-width='2'/%3E%3Ccircle cx='110' cy='95' r='6' fill='none' stroke='%23ec4899' stroke-width='2'/%3E%3Ccircle cx='100' cy='90' r='6' fill='none' stroke='%23ec4899' stroke-width='2'/%3E%3Cpath d='M50 110 L70 110 L75 102 L80 118 L85 107 L90 112 L150 112' stroke='%23ec4899' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ec4899;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f472b6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' rx='40' fill='url(%23grad)'/%3E%3Ccircle cx='100' cy='100' r='70' fill='white' opacity='0.95'/%3E%3Cpath d='M100 120 L85 105 Q78 98 78 88 Q78 78 85 74 Q92 71 100 80 Q108 71 115 74 Q122 78 122 88 Q122 98 115 105 Z' fill='%23ec4899'/%3E%3Crect x='95' y='65' width='10' height='20' rx='2' fill='%23ec4899'/%3E%3Crect x='90' y='70' width='20' height='10' rx='2' fill='%23ec4899'/%3E%3Ccircle cx='90' cy='95' r='6' fill='none' stroke='%23ec4899' stroke-width='2'/%3E%3Ccircle cx='110' cy='95' r='6' fill='none' stroke='%23ec4899' stroke-width='2'/%3E%3Ccircle cx='100' cy='90' r='6' fill='none' stroke='%23ec4899' stroke-width='2'/%3E%3Cpath d='M50 110 L70 110 L75 102 L80 118 L85 107 L90 112 L150 112' stroke='%23ec4899' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0088cc;
+            --primary-dark: #006699;
+            --secondary-color: #00c2a8;
+            --bg-primary: #f0f2f5;
+            --bg-secondary: #ffffff;
+            --text-primary: #050505;
+            --text-secondary: #65676b;
+            --border-color: #e4e6eb;
+            --hover-bg: #f2f3f5;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --success-color: #42b72a;
+            --danger-color: #e4384f;
+            --warning-color: #f7b928;
+        }
+
+        body {
+            font-family: 'Almarai', 'Cairo', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0088cc 0%, #00c2a8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: fadeOut 0.5s ease 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .splash-logo {
+            width: 160px;
+            height: 160px;
+            background: white;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: pulse 1.5s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .splash-logo::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid white;
+            opacity: 0.9;
+        }
+
+        .splash-logo i {
+            font-size: 60px;
+            background: linear-gradient(135deg, #0088cc, #00c2a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .splash-text {
+            color: white;
+            font-size: 32px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Login Screen */
+        #login-screen {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0088cc 0%, #00c2a8 100%);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #login-screen::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            to { transform: translate(25px, 25px); }
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-logo-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 25px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-logo-icon i {
+            font-size: 50px;
+            background: linear-gradient(135deg, #0088cc, #00c2a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-logo h1 {
+            color: white;
+            font-size: 36px;
+            font-weight: 900;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-logo p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.6s ease 0.2s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0, 136, 204, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0088cc, #00c2a8);
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-google {
+            background: white;
+            color: #333;
+            border: 2px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-google:hover {
+            background: var(--bg-primary);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .language-selector {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .language-selector select {
+            padding: 8px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            cursor: pointer;
+            background: white;
+        }
+
+        /* Main App Container */
+        #app-container {
+            display: none;
+        }
+
+        /* Header / Navbar */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-logo:hover {
+            transform: translateY(-1px);
+        }
+
+        .navbar-logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0088cc, #00c2a8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 136, 204, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-logo-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+        }
+
+        .navbar-logo span {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border: none;
+            border-radius: 50px;
+            background: var(--bg-primary);
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .navbar-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 24px;
+        }
+
+        .nav-icon:hover {
+            background: var(--hover-bg);
+            transform: scale(1.08);
+        }
+
+        .nav-icon.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            background: var(--danger-color);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            border: 2px solid var(--bg-secondary);
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .user-avatar:hover {
+            transform: scale(1.1);
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+        }
+        
+        .user-avatar.active {
+            box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.3);
+            border-color: var(--primary-color);
+        }
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+        }
+
+        .nav-tabs-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tab:hover {
+            background: var(--hover-bg);
+            border-bottom-color: var(--border-color);
+        }
+
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 12px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .sidebar-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .sidebar-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .sidebar-item i {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 0;
+        }
+
+        /* Create Post Card */
+        .create-post-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .create-post-header {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .create-post-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 50px;
+            background: var(--bg-primary);
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .create-post-actions {
+            display: flex;
+            gap: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            justify-content: space-around;
+        }
+
+        .post-action-btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            background: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .post-action-btn:hover {
+            background: var(--hover-bg);
+            transform: translateY(-2px);
+        }
+
+        .post-action-btn i {
+            font-size: 26px;
+        }
+
+        /* Post Card */
+        .post-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .post-header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .post-author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+        }
+
+        .post-author-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .post-author-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .post-menu-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .post-menu-btn:hover {
+            background: var(--hover-bg);
+        }
+
+        .post-content {
+            padding: 0 16px 16px;
+        }
+
+        .post-text {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .post-stats {
+            padding: 12px 16px;
+            display: none;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .post-stat {
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .post-stat:hover {
+            text-decoration: underline;
+        }
+
+        .post-actions {
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .post-action {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .post-action-icon {
+            font-size: 22px;
+        }
+
+        .post-action-text {
+            font-size: 13px;
+        }
+
+        .post-action-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .post-action:hover {
+            background: var(--hover-bg);
+        }
+
+        .post-action.liked {
+            color: var(--danger-color);
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+        }
+
+        .contact-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .contact-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .online-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--success-color);
+            border: 2px solid var(--bg-secondary);
+            border-radius: 50%;
+        }
+
+        .contact-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Profile Page */
+        .profile-header {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-cover {
+            height: 300px;
+            background: linear-gradient(135deg, #0088cc, #00c2a8);
+            position: relative;
+        }
+
+        .profile-info {
+            padding: 20px;
+            position: relative;
+            margin-top: -80px;
+        }
+
+        .profile-avatar-large {
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            border: 6px solid var(--bg-secondary);
+            margin: 0 auto;
+            display: block;
+        }
+
+        .profile-name {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .profile-name h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .profile-name p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .profile-stat {
+            text-align: center;
+        }
+
+        .profile-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .profile-stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Settings Page */
+        /* Settings Page - Facebook Style */
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 60px);
+            background: var(--bg-primary);
+        }
+
+        .settings-sidebar {
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-color);
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
+            overflow-y: auto;
+        }
+
+        .settings-sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .settings-sidebar-header h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .settings-menu {
+            padding: 8px 0;
+        }
+
+        .settings-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 0;
+            margin: 0;
+        }
+
+        .settings-menu-item:hover {
+            background: var(--bg-primary);
+        }
+
+        .settings-menu-item.active {
+            background: var(--bg-primary);
+            border-right: 3px solid var(--primary-color);
+        }
+
+        .settings-menu-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .settings-menu-item.active .settings-menu-icon {
+            background: rgba(0, 136, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .settings-menu-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .settings-content {
+            padding: 24px 32px;
+            overflow-y: auto;
+            height: calc(100vh - 60px);
+        }
+
+        .settings-content-header {
+            margin-bottom: 24px;
+        }
+
+        .settings-content-header h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .settings-content-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .settings-section-content {
+            display: none;
+        }
+
+        .settings-section-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .settings-card-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .settings-card-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-card-item:hover {
+            background: var(--bg-primary);
+        }
+
+        .settings-card-item-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .settings-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        .settings-card-info {
+            flex: 1;
+        }
+
+        .settings-card-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .settings-card-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .settings-action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .settings-action-btn:hover {
+            background: var(--hover-bg);
+            transform: scale(1.05);
+        }
+
+        .settings-check-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .settings-check-icon.active {
+            color: var(--primary-color);
+        }
+
+        .settings-card-item.danger-zone {
+            background: rgba(228, 56, 79, 0.05);
+        }
+
+        .settings-card-item.danger-zone:hover {
+            background: rgba(228, 56, 79, 0.1);
+        }
+
+        .settings-card-icon.danger {
+            background: rgba(228, 56, 79, 0.1);
+            color: var(--danger-color);
+        }
+
+        .settings-action-btn.danger {
+            background: rgba(228, 56, 79, 0.1);
+            color: var(--danger-color);
+        }
+
+        .settings-logout-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .settings-logout-btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .settings-logout-btn:hover {
+            background: rgba(228, 56, 79, 0.05);
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .settings-logout-btn i {
+            font-size: 18px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 28px;
+            background: var(--border-color);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary-color);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active::after {
+            right: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .settings-layout {
+                grid-template-columns: 280px 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-sidebar {
+                display: none;
+            }
+
+            .settings-content {
+                padding: 16px;
+            }
+        }
+
+        /* Old Settings Classes - Keep for compatibility */
+        .settings-container {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .settings-section {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .settings-section:last-child {
+            border-bottom: none;
+        }
+
+        .settings-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: var(--bg-primary);
+        }
+
+        .settings-item-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .settings-item-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Notifications Page */
+        .notification-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .notification-card:hover {
+            background: var(--hover-bg);
+        }
+
+        .notification-card.unread {
+            background: rgba(0, 136, 204, 0.05);
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .notification-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .notification-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .notification-time {
+            font-size: 13px;
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar,
+            .right-sidebar {
+                display: none;
+            }
+
+            .search-box {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-logo span {
+                display: none;
+            }
+
+            .nav-tabs {
+                overflow-x: auto;
+            }
+
+            .nav-tabs-content {
+                justify-content: flex-start;
+            }
+
+            .profile-cover {
+                height: 200px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUpModal 0.3s ease;
+        }
+
+        @keyframes slideUpModal {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .modal-close:hover {
+            background: var(--hover-bg);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 10001;
+            animation: toastSlideUp 0.4s ease forwards;
+        }
+
+        @keyframes toastSlideUp {
+            to {
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .toast.success {
+            background: var(--success-color);
+        }
+
+        .toast.error {
+            background: var(--danger-color);
+        }
+
+        /* Hide elements by default */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Install Button */
+        #install-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9998;
+            display: none;
+            animation: slideUpBounce 0.5s ease;
+        }
+
+        @keyframes slideUpBounce {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(100px);
+            }
+            70% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        #install-button {
+            background: linear-gradient(135deg, #0088cc, #00c2a8);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        #install-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(236, 72, 153, 0.5);
+        }
+
+        #install-button:active {
+            transform: translateY(-1px);
+        }
+
+        #install-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            #install-button {
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .navbar {
+                padding: 8px 12px;
+            }
+
+            .main-container {
+                padding: 12px;
+            }
+
+            .create-post-actions {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            
+            .post-action-btn {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .post-action-btn i {
+                font-size: 24px;
+            }
+
+            .post-action-btn {
+                width: 100%;
+            }
+        }
+
+        /* Pull to refresh indicator */
+        .pull-to-refresh {
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: var(--shadow-md);
+            transition: top 0.3s ease;
+            z-index: 1001;
+        }
+
+        .pull-to-refresh.visible {
+            top: 20px;
+        }
+
+        /* iOS safe area support */
+        @supports (padding: env(safe-area-inset-top)) {
+            .navbar {
+                padding-top: calc(8px + env(safe-area-inset-top));
+            }
+
+            #install-container {
+                bottom: calc(20px + env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--danger-color);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            z-index: 10000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .offline-indicator.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offline-indicator">
+        <i class="fas fa-wifi-slash"></i>
+        <span data-i18n="offline">أنت غير متصل بالإنترنت</span>
+    </div>
+
+    <!-- Pull to Refresh Indicator -->
+    <div class="pull-to-refresh" id="pull-refresh">
+        <i class="fas fa-sync-alt"></i>
+    </div>
+
+    <!-- Install Button -->
+    <div id="install-container">
+        <button id="install-button">
+            <i class="fas fa-download"></i>
+            <span data-i18n="installApp">تثبيت التطبيق على هاتفك</span>
+        </button>
+        <div id="install-close">✕</div>
+    </div>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-logo">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 85%; height: 85%;">
+                <defs>
+                    <linearGradient id="splashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0088cc"/>
+                        <stop offset="100%" style="stop-color:#00c2a8"/>
+                    </linearGradient>
+                </defs>
+                <!-- Outer Circle -->
+                <circle cx="100" cy="100" r="90" fill="none" stroke="white" stroke-width="6" opacity="0.9"/>
+                <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-width="4" opacity="0.6"/>
+                
+                <!-- Medical Cross at Top -->
+                <g transform="translate(100, 60)">
+                    <rect x="-8" y="-18" width="16" height="36" rx="3" fill="url(#splashGrad)"/>
+                    <rect x="-18" y="-8" width="36" height="16" rx="3" fill="url(#splashGrad)"/>
+                </g>
+                
+                <!-- Heart in Center -->
+                <path d="M100 115 L80 95 Q70 85 70 75 Q70 65 80 60 Q90 56 100 68 Q110 56 120 60 Q130 65 130 75 Q130 85 120 95 Z" 
+                      fill="url(#splashGrad)"/>
+                
+                <!-- Stethoscope Parts -->
+                <circle cx="70" cy="85" r="10" fill="white" stroke="url(#splashGrad)" stroke-width="3"/>
+                <circle cx="70" cy="85" r="5" fill="#0088cc" opacity="0.3"/>
+                
+                <circle cx="130" cy="85" r="10" fill="white" stroke="url(#splashGrad)" stroke-width="3"/>
+                <circle cx="130" cy="85" r="5" fill="#00c2a8" opacity="0.3"/>
+                
+                <circle cx="100" cy="105" r="10" fill="white" stroke="url(#splashGrad)" stroke-width="3"/>
+                <circle cx="100" cy="105" r="5" fill="#0088cc" opacity="0.3"/>
+                
+                <!-- Stethoscope Tubes -->
+                <path d="M70 95 Q70 100 80 102" stroke="url(#splashGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M130 95 Q130 100 120 102" stroke="url(#splashGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M80 102 Q90 103 100 102" stroke="url(#splashGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M120 102 Q110 103 100 102" stroke="url(#splashGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                
+                <!-- Pulse Line at Bottom -->
+                <path d="M40 130 L65 130 L72 120 L79 140 L86 127 L93 133 L160 133" 
+                      stroke="url(#splashGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <div class="splash-text">MedicalMinds</div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen">
+        <div class="login-container">
+            <div class="login-logo">
+                <div class="login-logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <defs>
+                            <linearGradient id="loginGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#0088cc"/>
+                                <stop offset="100%" style="stop-color:#00c2a8"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Outer Circle -->
+                        <circle cx="100" cy="100" r="85" fill="none" stroke="url(#loginGrad)" stroke-width="4" opacity="0.8"/>
+                        
+                        <!-- Medical Cross -->
+                        <g transform="translate(100, 60)">
+                            <rect x="-7" y="-16" width="14" height="32" rx="2" fill="url(#loginGrad)"/>
+                            <rect x="-16" y="-7" width="32" height="14" rx="2" fill="url(#loginGrad)"/>
+                        </g>
+                        
+                        <!-- Heart -->
+                        <path d="M100 115 L82 97 Q72 87 72 77 Q72 67 82 62 Q92 58 100 70 Q108 58 118 62 Q128 67 128 77 Q128 87 118 97 Z" 
+                              fill="url(#loginGrad)"/>
+                        
+                        <!-- Stethoscope -->
+                        <circle cx="72" cy="87" r="9" fill="white" stroke="url(#loginGrad)" stroke-width="2.5"/>
+                        <circle cx="128" cy="87" r="9" fill="white" stroke="url(#loginGrad)" stroke-width="2.5"/>
+                        <circle cx="100" cy="105" r="9" fill="white" stroke="url(#loginGrad)" stroke-width="2.5"/>
+                        
+                        <path d="M72 96 Q75 100 85 102" stroke="url(#loginGrad)" stroke-width="2.5" fill="none"/>
+                        <path d="M128 96 Q125 100 115 102" stroke="url(#loginGrad)" stroke-width="2.5" fill="none"/>
+                        <path d="M85 102 Q92.5 103 100 102" stroke="url(#loginGrad)" stroke-width="2.5" fill="none"/>
+                        <path d="M115 102 Q107.5 103 100 102" stroke="url(#loginGrad)" stroke-width="2.5" fill="none"/>
+                        
+                        <!-- Pulse -->
+                        <path d="M45 130 L67 130 L73 121 L80 139 L87 128 L94 133 L155 133" 
+                              stroke="url(#loginGrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1>MedicalMinds</h1>
+                <p>عقول طبية متصلة</p>
+            </div>
+
+            <div class="login-card">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email" data-i18n="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-input" placeholder="example@medical.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" data-i18n="password">كلمة المرور</label>
+                        <input type="password" id="password" class="form-input" placeholder="********" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span data-i18n="login">تسجيل الدخول</span>
+                    </button>
+
+                    <button type="button" class="btn btn-google" onclick="loginWithGoogle()">
+                        <i class="fab fa-google"></i>
+                        <span data-i18n="googleLogin">تسجيل الدخول بواسطة Google</span>
+                    </button>
+
+                    <div class="divider">
+                        <span data-i18n="or">أو</span>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" onclick="showRegisterModal()">
+                        <i class="fas fa-user-plus"></i>
+                        <span data-i18n="createAccount">إنشاء حساب جديد</span>
+                    </button>
+                </form>
+
+                <div class="language-selector">
+                    <label data-i18n="language">اللغة: </label>
+                    <select id="language-select" onchange="changeLanguage(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="navbar-right">
+                    <a href="#" class="navbar-logo">
+                        <div class="navbar-logo-icon">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                                <!-- White Logo Elements -->
+                                <!-- Heart -->
+                                <path d="M100 130 L75 105 Q65 95 65 83 Q65 71 75 65 Q85 61 100 75 Q115 61 125 65 Q135 71 135 83 Q135 95 125 105 Z" 
+                                      fill="white"/>
+                                <!-- Cross -->
+                                <g transform="translate(100, 50)">
+                                    <rect x="-5" y="-12" width="10" height="24" rx="2" fill="white"/>
+                                    <rect x="-12" y="-5" width="24" height="10" rx="2" fill="white"/>
+                                </g>
+                                <!-- Pulse -->
+                                <path d="M50 145 L70 145 L75 137 L80 153 L85 142 L90 147 L150 147" 
+                                      stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span>MedicalMinds</span>
+                    </a>
+
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="search-input" placeholder="بحث في MedicalMinds" data-i18n-placeholder="search">
+                    </div>
+                </div>
+
+                <div class="navbar-icons">
+                    <div class="nav-icon" onclick="showPage('home')" title="الرئيسية">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('notifications')" title="الإشعارات">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('messages')" title="الرسائل">
+                        <i class="fas fa-envelope"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('settings')" title="الإعدادات">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <img src="https://i.pravatar.cc/150?img=12" alt="User" class="user-avatar" onclick="showPage('profile')" title="الملف الشخصي" style="cursor: pointer;">
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="main-container">
+                <!-- Left Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-menu">
+                        <a href="#" class="sidebar-item active">
+                            <i class="fas fa-home"></i>
+                            <span data-i18n="home">الرئيسية</span>
+                        </a>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-user-md"></i>
+                            <span data-i18n="doctors">الأطباء</span>
+                        </a>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-hospital"></i>
+                            <span data-i18n="hospitals">المستشفيات</span>
+                        </a>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-pills"></i>
+                            <span data-i18n="pharmacy">الصيدلية</span>
+                        </a>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-book-medical"></i>
+                            <span data-i18n="medicalLibrary">المكتبة الطبية</span>
+                        </a>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-video"></i>
+                            <span data-i18n="conferences">مؤتمرات طبية</span>
+                        </a>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-briefcase-medical"></i>
+                            <span data-i18n="jobs">وظائف طبية</span>
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="content-area">
+                    <!-- Create Post Card -->
+                    <div class="create-post-card">
+                        <div class="create-post-header">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="User" class="user-avatar">
+                            <input type="text" class="create-post-input" placeholder="ما الذي تفكر فيه؟" onclick="showCreatePostModal()" data-i18n-placeholder="whatsOnYourMind">
+                        </div>
+                        <div class="create-post-actions">
+                            <button class="post-action-btn" onclick="showCreatePostModal()">
+                                <i class="fas fa-image" style="color: #45bd62;"></i>
+                                <span data-i18n="photo">صورة</span>
+                            </button>
+                            <button class="post-action-btn" onclick="showCreatePostModal()">
+                                <i class="fas fa-video" style="color: #f3425f;"></i>
+                                <span data-i18n="video">فيديو</span>
+                            </button>
+                            <button class="post-action-btn" onclick="showCreatePostModal()">
+                                <i class="fas fa-file-medical" style="color: #f7b928;"></i>
+                                <span data-i18n="medicalCase">حالة طبية</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Posts Feed -->
+                    <div id="posts-feed">
+                        <!-- Post 1 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author">
+                                    <img src="https://i.pravatar.cc/150?img=33" alt="Doctor" class="post-author-avatar">
+                                    <div class="post-author-info">
+                                        <h4>د. أحمد محمود</h4>
+                                        <p>استشاري أمراض القلب • منذ ساعتين</p>
+                                    </div>
+                                </div>
+                                <button class="post-menu-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <div class="post-content">
+                                <p class="post-text">مشاركة معلومات هامة حول الوقاية من أمراض القلب 🫀 يُعتبر النظام الغذائي الصحي وممارسة الرياضة من أهم العوامل للحفاظ على صحة القلب. تذكر دائماً: الوقاية خير من العلاج!</p>
+                                <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80" alt="Medical" class="post-image">
+                            </div>
+                            <div class="post-actions">
+                                <button class="post-action" onclick="toggleLike(this)">
+                                    <i class="far fa-heart post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="like">إعجاب</span>
+                                    <span class="post-action-count">245</span>
+                                </button>
+                                <button class="post-action">
+                                    <i class="far fa-comment post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="comment">تعليق</span>
+                                    <span class="post-action-count">32</span>
+                                </button>
+                                <button class="post-action">
+                                    <i class="fas fa-share post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="share">مشاركة</span>
+                                    <span class="post-action-count">18</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author">
+                                    <img src="https://i.pravatar.cc/150?img=45" alt="Doctor" class="post-author-avatar">
+                                    <div class="post-author-info">
+                                        <h4>د. سارة العلي</h4>
+                                        <p>طبيبة أطفال • منذ 4 ساعات</p>
+                                    </div>
+                                </div>
+                                <button class="post-menu-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <div class="post-content">
+                                <p class="post-text">نصائح مهمة للأمهات: التطعيمات ضرورية لحماية أطفالكم من الأمراض المعدية. تأكدوا من متابعة جدول التطعيمات الموصى به 💉👶</p>
+                            </div>
+                            <div class="post-actions">
+                                <button class="post-action" onclick="toggleLike(this)">
+                                    <i class="far fa-heart post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="like">إعجاب</span>
+                                    <span class="post-action-count">189</span>
+                                </button>
+                                <button class="post-action">
+                                    <i class="far fa-comment post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="comment">تعليق</span>
+                                    <span class="post-action-count">45</span>
+                                </button>
+                                <button class="post-action">
+                                    <i class="fas fa-share post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="share">مشاركة</span>
+                                    <span class="post-action-count">27</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author">
+                                    <img src="https://i.pravatar.cc/150?img=68" alt="Doctor" class="post-author-avatar">
+                                    <div class="post-author-info">
+                                        <h4>د. محمد حسن</h4>
+                                        <p>جراح عام • منذ 6 ساعات</p>
+                                    </div>
+                                </div>
+                                <button class="post-menu-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <div class="post-content">
+                                <p class="post-text">إجراء عملية جراحية ناجحة اليوم باستخدام تقنية المنظار الحديثة. التقدم التكنولوجي في المجال الطبي يساعدنا على تقديم رعاية أفضل للمرضى 🏥⚕️</p>
+                                <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80" alt="Surgery" class="post-image">
+                            </div>
+                            <div class="post-actions">
+                                <button class="post-action" onclick="toggleLike(this)">
+                                    <i class="far fa-heart post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="like">إعجاب</span>
+                                    <span class="post-action-count">312</span>
+                                </button>
+                                <button class="post-action">
+                                    <i class="far fa-comment post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="comment">تعليق</span>
+                                    <span class="post-action-count">56</span>
+                                </button>
+                                <button class="post-action">
+                                    <i class="fas fa-share post-action-icon"></i>
+                                    <span class="post-action-text" data-i18n="share">مشاركة</span>
+                                    <span class="post-action-count">34</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Right Sidebar -->
+                <aside class="right-sidebar">
+                    <div class="sidebar-section">
+                        <h3 data-i18n="onlineContacts">جهات الاتصال المتصلة</h3>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <img src="https://i.pravatar.cc/150?img=1" alt="Contact" style="width: 100%; height: 100%; border-radius: 50%;">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">د. فاطمة أحمد</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <img src="https://i.pravatar.cc/150?img=8" alt="Contact" style="width: 100%; height: 100%; border-radius: 50%;">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">د. يوسف عمر</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <img src="https://i.pravatar.cc/150?img=15" alt="Contact" style="width: 100%; height: 100%; border-radius: 50%;">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">د. مريم خالد</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 data-i18n="suggestedGroups">مجموعات مقترحة</h3>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <i class="fas fa-users" style="color: var(--primary-color);"></i>
+                            </div>
+                            <span class="contact-name">أطباء القلب</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <i class="fas fa-users" style="color: var(--secondary-color);"></i>
+                            </div>
+                            <span class="contact-name">جراحو العظام</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Notifications Page -->
+        <div id="notifications-page" class="page">
+            <div class="main-container" style="grid-template-columns: 1fr;">
+                <div class="content-area">
+                    <div class="settings-container">
+                        <h2 style="margin-bottom: 24px; font-size: 28px;" data-i18n="notifications">الإشعارات</h2>
+                        
+                        <div class="notification-card unread">
+                            <div class="notification-icon">
+                                <i class="fas fa-heart" style="color: var(--danger-color); font-size: 24px;"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4><strong>د. أحمد محمود</strong> أعجب بمنشورك</h4>
+                                <p>منشور حول "أحدث التطورات في علاج السكري"</p>
+                                <span class="notification-time">منذ 5 دقائق</span>
+                            </div>
+                        </div>
+
+                        <div class="notification-card unread">
+                            <div class="notification-icon">
+                                <i class="fas fa-comment" style="color: var(--primary-color); font-size: 24px;"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4><strong>د. سارة العلي</strong> علقت على منشورك</h4>
+                                <p>"معلومات قيمة جداً، شكراً على المشاركة"</p>
+                                <span class="notification-time">منذ 15 دقيقة</span>
+                            </div>
+                        </div>
+
+                        <div class="notification-card">
+                            <div class="notification-icon">
+                                <i class="fas fa-user-plus" style="color: var(--success-color); font-size: 24px;"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4><strong>د. محمد حسن</strong> بدأ بمتابعتك</h4>
+                                <p>جراح عام في مستشفى الملك فيصل</p>
+                                <span class="notification-time">منذ ساعة واحدة</span>
+                            </div>
+                        </div>
+
+                        <div class="notification-card">
+                            <div class="notification-icon">
+                                <i class="fas fa-share" style="color: var(--warning-color); font-size: 24px;"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4><strong>د. ليلى إبراهيم</strong> شاركت منشورك</h4>
+                                <p>تمت مشاركة المنشور مع 150 متابع</p>
+                                <span class="notification-time">منذ ساعتين</span>
+                            </div>
+                        </div>
+
+                        <div class="notification-card">
+                            <div class="notification-icon">
+                                <i class="fas fa-calendar" style="color: var(--secondary-color); font-size: 24px;"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>تذكير بمؤتمر طبي</h4>
+                                <p>مؤتمر الطب الحديث 2024 يبدأ غداً الساعة 9 صباحاً</p>
+                                <span class="notification-time">منذ 4 ساعات</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile-page" class="page">
+            <div class="main-container" style="grid-template-columns: 1fr;">
+                <div class="content-area">
+                    <div class="profile-header">
+                        <div class="profile-cover"></div>
+                        <div class="profile-info">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="profile-avatar-large">
+                            <div class="profile-name">
+                                <h2>د. عمر السالم</h2>
+                                <p>استشاري أمراض الباطنة | مستشفى الملك فيصل التخصصي</p>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="profile-stat">
+                                    <div class="profile-stat-value">1,250</div>
+                                    <div class="profile-stat-label" data-i18n="posts">منشور</div>
+                                </div>
+                                <div class="profile-stat">
+                                    <div class="profile-stat-value">5,430</div>
+                                    <div class="profile-stat-label" data-i18n="followers">متابع</div>
+                                </div>
+                                <div class="profile-stat">
+                                    <div class="profile-stat-value">892</div>
+                                    <div class="profile-stat-label" data-i18n="following">يتابع</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-container" style="margin-top: 20px;">
+                        <h3 style="margin-bottom: 20px;" data-i18n="about">عن الطبيب</h3>
+                        <p style="line-height: 1.8; color: var(--text-secondary);">
+                            استشاري أمراض الباطنة مع خبرة تزيد عن 15 عاماً في التشخيص والعلاج. حاصل على البورد السعودي والأمريكي في الطب الباطني. متخصص في علاج الأمراض المزمنة مثل السكري وارتفاع ضغط الدم. عضو في الجمعية السعودية للطب الباطني والجمعية الأمريكية للأطباء.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings-page" class="page">
+            <div class="settings-layout">
+                <!-- Settings Sidebar -->
+                <div class="settings-sidebar">
+                    <div class="settings-sidebar-header">
+                        <h2 data-i18n="settings">الإعدادات</h2>
+                    </div>
+                    <div class="settings-menu">
+                        <div class="settings-menu-item active" onclick="showSettingsSection('account')">
+                            <div class="settings-menu-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="settings-menu-text">
+                                <div class="settings-menu-title" data-i18n="accountSettings">إعدادات الحساب</div>
+                            </div>
+                        </div>
+                        <div class="settings-menu-item" onclick="showSettingsSection('privacy')">
+                            <div class="settings-menu-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="settings-menu-text">
+                                <div class="settings-menu-title" data-i18n="privacySettings">الخصوصية والأمان</div>
+                            </div>
+                        </div>
+                        <div class="settings-menu-item" onclick="showSettingsSection('notifications')">
+                            <div class="settings-menu-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="settings-menu-text">
+                                <div class="settings-menu-title" data-i18n="notificationSettings">الإشعارات</div>
+                            </div>
+                        </div>
+                        <div class="settings-menu-item" onclick="showSettingsSection('appearance')">
+                            <div class="settings-menu-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="settings-menu-text">
+                                <div class="settings-menu-title" data-i18n="appearance">المظهر</div>
+                            </div>
+                        </div>
+                        <div class="settings-menu-item" onclick="showSettingsSection('language')">
+                            <div class="settings-menu-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="settings-menu-text">
+                                <div class="settings-menu-title" data-i18n="language">اللغة والمنطقة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- Account Settings -->
+                    <div id="account-settings" class="settings-section-content active">
+                        <div class="settings-content-header">
+                            <h3 data-i18n="accountSettings">إعدادات الحساب</h3>
+                            <p class="settings-content-desc">قم بإدارة معلومات حسابك وإعدادات الأمان</p>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-user-edit"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="editProfile">تعديل الملف الشخصي</h4>
+                                        <p data-i18n="editProfileDesc">قم بتحديث معلوماتك الشخصية والمهنية</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-key"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="changePassword">تغيير كلمة المرور</h4>
+                                        <p data-i18n="changePasswordDesc">قم بتحديث كلمة مرور حسابك للحفاظ على الأمان</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>البريد الإلكتروني</h4>
+                                        <p>example@medical.com</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>رقم الهاتف</h4>
+                                        <p>+966 50 123 4567</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="settings-card" style="margin-top: 20px;">
+                            <div class="settings-card-item danger-zone">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>حذف الحساب</h4>
+                                        <p>حذف حسابك وجميع بياناتك بشكل نهائي</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn danger">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div id="privacy-settings" class="settings-section-content">
+                        <div class="settings-content-header">
+                            <h3 data-i18n="privacySettings">الخصوصية والأمان</h3>
+                            <p class="settings-content-desc">تحكم في خصوصيتك وأمان حسابك</p>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="profileVisibility">ظهور الملف الشخصي</h4>
+                                        <p data-i18n="profileVisibilityDesc">التحكم في من يمكنه رؤية ملفك الشخصي</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-circle" style="font-size: 12px; color: #42b72a;"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="showOnlineStatus">إظهار حالة الاتصال</h4>
+                                        <p data-i18n="showOnlineStatusDesc">السماح للآخرين برؤية وقت تواجدك</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="twoFactorAuth">المصادقة الثنائية</h4>
+                                        <p data-i18n="twoFactorAuthDesc">أضف طبقة حماية إضافية لحسابك</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-user-lock"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>من يمكنه إرسال رسائل لك</h4>
+                                        <p>الجميع</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>من يمكنه رؤية منشوراتك</h4>
+                                        <p>الأصدقاء</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Settings -->
+                    <div id="notifications-settings" class="settings-section-content">
+                        <div class="settings-content-header">
+                            <h3 data-i18n="notificationSettings">إعدادات الإشعارات</h3>
+                            <p class="settings-content-desc">اختر الإشعارات التي تريد تلقيها</p>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="pushNotifications">الإشعارات الفورية</h4>
+                                        <p data-i18n="pushNotificationsDesc">تلقي إشعارات على جهازك</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="emailNotifications">الإشعارات عبر البريد</h4>
+                                        <p data-i18n="emailNotificationsDesc">تلقي تحديثات عبر البريد الإلكتروني</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>إشعارات الإعجابات</h4>
+                                        <p>عند إعجاب شخص بمنشورك</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>إشعارات التعليقات</h4>
+                                        <p>عند تعليق شخص على منشورك</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>إشعارات المتابعين</h4>
+                                        <p>عند متابعة شخص جديد لك</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Appearance Settings -->
+                    <div id="appearance-settings" class="settings-section-content">
+                        <div class="settings-content-header">
+                            <h3 data-i18n="appearance">المظهر</h3>
+                            <p class="settings-content-desc">خصص مظهر التطبيق حسب تفضيلاتك</p>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-moon"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4 data-i18n="darkMode">الوضع الليلي</h4>
+                                        <p data-i18n="darkModeDesc">تفعيل المظهر الداكن للعينين</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-text-height"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>حجم الخط</h4>
+                                        <p>متوسط</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-compress-arrows-alt"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>الوضع المضغوط</h4>
+                                        <p>عرض المزيد من المحتوى في الشاشة</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Language Settings -->
+                    <div id="language-settings" class="settings-section-content">
+                        <div class="settings-content-header">
+                            <h3 data-i18n="language">اللغة والمنطقة</h3>
+                            <p class="settings-content-desc">اختر لغتك المفضلة والمنطقة الزمنية</p>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-card-item" onclick="changeLanguage('ar')">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>العربية</h4>
+                                        <p>Arabic</p>
+                                    </div>
+                                </div>
+                                <div class="settings-check-icon active">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+
+                            <div class="settings-card-item" onclick="changeLanguage('en')">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>English</h4>
+                                        <p>الإنجليزية</p>
+                                    </div>
+                                </div>
+                                <div class="settings-check-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+
+                            <div class="settings-card-item" onclick="changeLanguage('fr')">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>Français</h4>
+                                        <p>الفرنسية</p>
+                                    </div>
+                                </div>
+                                <div class="settings-check-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+
+                            <div class="settings-card-item" onclick="changeLanguage('es')">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>Español</h4>
+                                        <p>الإسبانية</p>
+                                    </div>
+                                </div>
+                                <div class="settings-check-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card" style="margin-top: 20px;">
+                            <div class="settings-card-item">
+                                <div class="settings-card-item-left">
+                                    <div class="settings-card-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="settings-card-info">
+                                        <h4>المنطقة الزمنية</h4>
+                                        <p>GMT+3 (الرياض)</p>
+                                    </div>
+                                </div>
+                                <button class="settings-action-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logout Section -->
+                    <div class="settings-logout-section">
+                        <button class="settings-logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span data-i18n="logout">تسجيل الخروج</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="createAccount">إنشاء حساب جديد</h3>
+                <button class="modal-close" onclick="closeModal('register-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="register-form">
+                <div class="form-group">
+                    <label data-i18n="fullName">الاسم الكامل</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="email">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="specialization">التخصص</label>
+                    <select class="form-input" required>
+                        <option value="">اختر التخصص</option>
+                        <option value="cardiology">أمراض القلب</option>
+                        <option value="pediatrics">طب الأطفال</option>
+                        <option value="surgery">الجراحة</option>
+                        <option value="internal">الطب الباطني</option>
+                        <option value="orthopedics">جراحة العظام</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="password">كلمة المرور</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="confirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span data-i18n="register">تسجيل</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            ar: {
+                email: 'البريد الإلكتروني',
+                password: 'كلمة المرور',
+                login: 'تسجيل الدخول',
+                googleLogin: 'تسجيل الدخول بواسطة Google',
+                or: 'أو',
+                createAccount: 'إنشاء حساب جديد',
+                language: 'اللغة',
+                search: 'بحث في MedicalBook',
+                home: 'الرئيسية',
+                doctors: 'الأطباء',
+                hospitals: 'المستشفيات',
+                pharmacy: 'الصيدلية',
+                medicalLibrary: 'المكتبة الطبية',
+                conferences: 'مؤتمرات طبية',
+                jobs: 'وظائف طبية',
+                whatsOnYourMind: 'ما الذي تفكر فيه؟',
+                photo: 'صورة',
+                video: 'فيديو',
+                medicalCase: 'حالة طبية',
+                like: 'إعجاب',
+                comment: 'تعليق',
+                share: 'مشاركة',
+                onlineContacts: 'جهات الاتصال المتصلة',
+                suggestedGroups: 'مجموعات مقترحة',
+                notifications: 'الإشعارات',
+                posts: 'منشور',
+                followers: 'متابع',
+                following: 'يتابع',
+                about: 'عن الطبيب',
+                settings: 'الإعدادات',
+                accountSettings: 'إعدادات الحساب',
+                editProfile: 'تعديل الملف الشخصي',
+                editProfileDesc: 'تحديث معلوماتك الشخصية والمهنية',
+                changePassword: 'تغيير كلمة المرور',
+                changePasswordDesc: 'تحديث كلمة مرور حسابك',
+                privacySettings: 'إعدادات الخصوصية',
+                profileVisibility: 'ظهور الملف الشخصي',
+                profileVisibilityDesc: 'التحكم في من يمكنه رؤية ملفك الشخصي',
+                showOnlineStatus: 'إظهار حالة الاتصال',
+                showOnlineStatusDesc: 'السماح للآخرين برؤية وقت تواجدك',
+                twoFactorAuth: 'المصادقة الثنائية',
+                twoFactorAuthDesc: 'حماية إضافية لحسابك',
+                notificationSettings: 'إعدادات الإشعارات',
+                pushNotifications: 'الإشعارات الفورية',
+                pushNotificationsDesc: 'تلقي إشعارات على جهازك',
+                emailNotifications: 'الإشعارات عبر البريد',
+                emailNotificationsDesc: 'تلقي تحديثات عبر البريد الإلكتروني',
+                appearance: 'المظهر',
+                darkMode: 'الوضع الليلي',
+                darkModeDesc: 'تفعيل المظهر الداكن',
+                logout: 'تسجيل الخروج',
+                fullName: 'الاسم الكامل',
+                specialization: 'التخصص',
+                confirmPassword: 'تأكيد كلمة المرور',
+                register: 'تسجيل'
+            },
+            en: {
+                email: 'Email',
+                password: 'Password',
+                login: 'Login',
+                googleLogin: 'Login with Google',
+                or: 'or',
+                createAccount: 'Create New Account',
+                language: 'Language',
+                search: 'Search MedicalBook',
+                home: 'Home',
+                doctors: 'Doctors',
+                hospitals: 'Hospitals',
+                pharmacy: 'Pharmacy',
+                medicalLibrary: 'Medical Library',
+                conferences: 'Medical Conferences',
+                jobs: 'Medical Jobs',
+                whatsOnYourMind: "What's on your mind?",
+                photo: 'Photo',
+                video: 'Video',
+                medicalCase: 'Medical Case',
+                like: 'Like',
+                comment: 'Comment',
+                share: 'Share',
+                onlineContacts: 'Online Contacts',
+                suggestedGroups: 'Suggested Groups',
+                notifications: 'Notifications',
+                posts: 'Posts',
+                followers: 'Followers',
+                following: 'Following',
+                about: 'About',
+                settings: 'Settings',
+                accountSettings: 'Account Settings',
+                editProfile: 'Edit Profile',
+                editProfileDesc: 'Update your personal and professional information',
+                changePassword: 'Change Password',
+                changePasswordDesc: 'Update your account password',
+                privacySettings: 'Privacy Settings',
+                profileVisibility: 'Profile Visibility',
+                profileVisibilityDesc: 'Control who can see your profile',
+                showOnlineStatus: 'Show Online Status',
+                showOnlineStatusDesc: 'Let others see when you are online',
+                twoFactorAuth: 'Two-Factor Authentication',
+                twoFactorAuthDesc: 'Extra security for your account',
+                notificationSettings: 'Notification Settings',
+                pushNotifications: 'Push Notifications',
+                pushNotificationsDesc: 'Receive notifications on your device',
+                emailNotifications: 'Email Notifications',
+                emailNotificationsDesc: 'Receive updates via email',
+                appearance: 'Appearance',
+                darkMode: 'Dark Mode',
+                darkModeDesc: 'Enable dark theme',
+                logout: 'Logout',
+                fullName: 'Full Name',
+                specialization: 'Specialization',
+                confirmPassword: 'Confirm Password',
+                register: 'Register'
+            },
+            fr: {
+                email: 'Email',
+                password: 'Mot de passe',
+                login: 'Connexion',
+                googleLogin: 'Se connecter avec Google',
+                or: 'ou',
+                createAccount: 'Créer un nouveau compte',
+                language: 'Langue',
+                search: 'Rechercher dans MedicalBook',
+                home: 'Accueil',
+                doctors: 'Médecins',
+                hospitals: 'Hôpitaux',
+                pharmacy: 'Pharmacie',
+                medicalLibrary: 'Bibliothèque médicale',
+                conferences: 'Conférences médicales',
+                jobs: 'Emplois médicaux',
+                whatsOnYourMind: 'À quoi pensez-vous?',
+                photo: 'Photo',
+                video: 'Vidéo',
+                medicalCase: 'Cas médical',
+                like: 'Aimer',
+                comment: 'Commenter',
+                share: 'Partager',
+                onlineContacts: 'Contacts en ligne',
+                suggestedGroups: 'Groupes suggérés',
+                notifications: 'Notifications',
+                posts: 'Publications',
+                followers: 'Abonnés',
+                following: 'Abonnements',
+                about: 'À propos',
+                settings: 'Paramètres',
+                accountSettings: 'Paramètres du compte',
+                editProfile: 'Modifier le profil',
+                editProfileDesc: 'Mettre à jour vos informations personnelles et professionnelles',
+                changePassword: 'Changer le mot de passe',
+                changePasswordDesc: 'Mettre à jour le mot de passe de votre compte',
+                privacySettings: 'Paramètres de confidentialité',
+                profileVisibility: 'Visibilité du profil',
+                profileVisibilityDesc: 'Contrôler qui peut voir votre profil',
+                showOnlineStatus: 'Afficher le statut en ligne',
+                showOnlineStatusDesc: 'Permettre aux autres de voir quand vous êtes en ligne',
+                twoFactorAuth: 'Authentification à deux facteurs',
+                twoFactorAuthDesc: 'Sécurité supplémentaire pour votre compte',
+                notificationSettings: 'Paramètres de notification',
+                pushNotifications: 'Notifications push',
+                pushNotificationsDesc: 'Recevoir des notifications sur votre appareil',
+                emailNotifications: 'Notifications par email',
+                emailNotificationsDesc: 'Recevoir des mises à jour par email',
+                appearance: 'Apparence',
+                darkMode: 'Mode sombre',
+                darkModeDesc: 'Activer le thème sombre',
+                logout: 'Déconnexion',
+                fullName: 'Nom complet',
+                specialization: 'Spécialisation',
+                confirmPassword: 'Confirmer le mot de passe',
+                register: "S'inscrire"
+            },
+            es: {
+                email: 'Correo electrónico',
+                password: 'Contraseña',
+                login: 'Iniciar sesión',
+                googleLogin: 'Iniciar sesión con Google',
+                or: 'o',
+                createAccount: 'Crear nueva cuenta',
+                language: 'Idioma',
+                search: 'Buscar en MedicalBook',
+                home: 'Inicio',
+                doctors: 'Médicos',
+                hospitals: 'Hospitales',
+                pharmacy: 'Farmacia',
+                medicalLibrary: 'Biblioteca médica',
+                conferences: 'Conferencias médicas',
+                jobs: 'Empleos médicos',
+                whatsOnYourMind: '¿Qué estás pensando?',
+                photo: 'Foto',
+                video: 'Video',
+                medicalCase: 'Caso médico',
+                like: 'Me gusta',
+                comment: 'Comentar',
+                share: 'Compartir',
+                onlineContacts: 'Contactos en línea',
+                suggestedGroups: 'Grupos sugeridos',
+                notifications: 'Notificaciones',
+                posts: 'Publicaciones',
+                followers: 'Seguidores',
+                following: 'Siguiendo',
+                about: 'Acerca de',
+                settings: 'Configuración',
+                accountSettings: 'Configuración de la cuenta',
+                editProfile: 'Editar perfil',
+                editProfileDesc: 'Actualizar su información personal y profesional',
+                changePassword: 'Cambiar contraseña',
+                changePasswordDesc: 'Actualizar la contraseña de su cuenta',
+                privacySettings: 'Configuración de privacidad',
+                profileVisibility: 'Visibilidad del perfil',
+                profileVisibilityDesc: 'Controlar quién puede ver su perfil',
+                showOnlineStatus: 'Mostrar estado en línea',
+                showOnlineStatusDesc: 'Permitir que otros vean cuándo está en línea',
+                twoFactorAuth: 'Autenticación de dos factores',
+                twoFactorAuthDesc: 'Seguridad adicional para su cuenta',
+                notificationSettings: 'Configuración de notificaciones',
+                pushNotifications: 'Notificaciones push',
+                pushNotificationsDesc: 'Recibir notificaciones en su dispositivo',
+                emailNotifications: 'Notificaciones por correo',
+                emailNotificationsDesc: 'Recibir actualizaciones por correo electrónico',
+                appearance: 'Apariencia',
+                darkMode: 'Modo oscuro',
+                darkModeDesc: 'Activar tema oscuro',
+                logout: 'Cerrar sesión',
+                fullName: 'Nombre completo',
+                specialization: 'Especialización',
+                confirmPassword: 'Confirmar contraseña',
+                register: 'Registrarse'
+            }
+        };
+
+        let currentLanguage = 'ar';
+
+        // Initialize app
+        setTimeout(() => {
+            document.getElementById('splash-screen').style.display = 'none';
+            document.getElementById('login-screen').style.display = 'block';
+        }, 2500);
+
+        // Login form handling
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('جاري تسجيل الدخول...', 'success');
+            setTimeout(() => {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('app-container').style.display = 'block';
+                showToast('تم تسجيل الدخول بنجاح!', 'success');
+            }, 1500);
+        });
+
+        // Google login
+        function loginWithGoogle() {
+            showToast('جاري تسجيل الدخول عبر Google...', 'success');
+            setTimeout(() => {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('app-container').style.display = 'block';
+                showToast('تم تسجيل الدخول بنجاح!', 'success');
+            }, 1500);
+        }
+
+        // Register modal
+        function showRegisterModal() {
+            document.getElementById('register-modal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('جاري إنشاء الحساب...', 'success');
+            setTimeout(() => {
+                closeModal('register-modal');
+                showToast('تم إنشاء الحساب بنجاح!', 'success');
+            }, 1500);
+        });
+
+        // Page navigation
+        function showPage(pageName) {
+            // إخفاء جميع الصفحات
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // إظهار الصفحة المحددة
+            document.getElementById(pageName + '-page').classList.add('active');
+            
+            // إزالة active من جميع الأيقونات
+            document.querySelectorAll('.nav-icon').forEach(icon => {
+                icon.classList.remove('active');
+            });
+            
+            // إزالة active من الصورة الشخصية
+            const userAvatar = document.querySelector('.navbar-icons .user-avatar');
+            if (userAvatar) {
+                userAvatar.style.boxShadow = '';
+                userAvatar.style.borderColor = '';
+            }
+            
+            // إضافة active للأيقونة المناسبة
+            if (pageName === 'profile') {
+                // تفعيل الصورة الشخصية
+                if (userAvatar) {
+                    userAvatar.style.boxShadow = '0 0 0 3px rgba(0, 136, 204, 0.3)';
+                    userAvatar.style.borderColor = 'var(--primary-color)';
+                }
+            } else if (pageName === 'home') {
+                document.querySelector('.nav-icon[onclick*="home"]').classList.add('active');
+            } else if (pageName === 'notifications') {
+                document.querySelector('.nav-icon[onclick*="notifications"]').classList.add('active');
+            } else if (pageName === 'messages') {
+                document.querySelector('.nav-icon[onclick*="messages"]').classList.add('active');
+            } else if (pageName === 'settings') {
+                document.querySelector('.nav-icon[onclick*="settings"]').classList.add('active');
+            }
+        }
+
+        // Show Settings Section
+        function showSettingsSection(sectionName) {
+            // Remove active from all menu items
+            document.querySelectorAll('.settings-menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active to clicked menu item
+            event.currentTarget.classList.add('active');
+            
+            // Hide all content sections
+            document.querySelectorAll('.settings-section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-settings').classList.add('active');
+        }
+
+        // Toggle like
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            const icon = btn.querySelector('.post-action-icon');
+            const countElement = btn.querySelector('.post-action-count');
+            let count = parseInt(countElement.textContent);
+            
+            if (btn.classList.contains('liked')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                count++;
+                showToast('تم الإعجاب بالمنشور', 'success');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                count--;
+            }
+            
+            countElement.textContent = count;
+        }
+
+        // Toggle switch
+        function toggleSwitch(element) {
+            element.classList.toggle('active');
+        }
+
+        // Logout
+        function logout() {
+            showToast('جاري تسجيل الخروج...', 'success');
+            setTimeout(() => {
+                document.getElementById('app-container').style.display = 'none';
+                document.getElementById('login-screen').style.display = 'block';
+                showToast('تم تسجيل الخروج بنجاح', 'success');
+            }, 1000);
+        }
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Language change
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const html = document.documentElement;
+            
+            if (lang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+            } else {
+                html.setAttribute('lang', lang);
+                html.setAttribute('dir', 'ltr');
+            }
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+
+            showToast(lang === 'ar' ? 'تم تغيير اللغة' : lang === 'en' ? 'Language changed' : lang === 'fr' ? 'Langue modifiée' : 'Idioma cambiado', 'success');
+        }
+
+        // Create post modal
+        function showCreatePostModal() {
+            showToast('فتح نافذة إنشاء منشور جديد...', 'success');
+        }
+
+        // Close modal on outside click
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // ==================== PWA FUNCTIONALITY ====================
+
+        let deferredPrompt;
+        const installContainer = document.getElementById('install-container');
+        const installButton = document.getElementById('install-button');
+        const installClose = document.getElementById('install-close');
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker registered successfully:', registration);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    showToast('تحديث جديد متاح! قم بإعادة تحميل الصفحة', 'success');
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installContainer.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    showToast('🎉 جاري تثبيت التطبيق...', 'success');
+                    installContainer.style.display = 'none';
+                } else {
+                    showToast('تم إلغاء التثبيت', 'error');
+                }
+                deferredPrompt = null;
+            } else {
+                // For iOS devices
+                if (navigator.userAgent.match(/iPhone|iPad|iPod/)) {
+                    showToast('اضغط على أيقونة المشاركة ثم "إضافة إلى الشاشة الرئيسية"', 'success');
+                } else {
+                    showToast('استخدم قائمة المتصفح لتثبيت التطبيق', 'success');
+                }
+            }
+        });
+
+        installClose.addEventListener('click', () => {
+            installContainer.style.display = 'none';
+        });
+
+        // Check if already installed
+        window.addEventListener('appinstalled', () => {
+            installContainer.style.display = 'none';
+            showToast('✅ تم تثبيت التطبيق بنجاح!', 'success');
+        });
+
+        // Check if running as PWA
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+            console.log('✅ Running as installed PWA');
+            installContainer.style.display = 'none';
+        }
+
+        // Online/Offline Detection
+        const offlineIndicator = document.getElementById('offline-indicator');
+
+        function updateOnlineStatus() {
+            if (navigator.onLine) {
+                offlineIndicator.classList.remove('show');
+                showToast('✅ تم الاتصال بالإنترنت', 'success');
+            } else {
+                offlineIndicator.classList.add('show');
+                showToast('⚠️ أنت غير متصل بالإنترنت', 'error');
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+
+        // Request Notification Permission
+        async function requestNotificationPermission() {
+            if ('Notification' in window && 'serviceWorker' in navigator) {
+                const permission = await Notification.requestPermission();
+                if (permission === 'granted') {
+                    console.log('✅ Notification permission granted');
+                    showToast('✅ تم تفعيل الإشعارات', 'success');
+                    
+                    // Subscribe to push notifications
+                    const registration = await navigator.serviceWorker.ready;
+                    try {
+                        const subscription = await registration.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: urlBase64ToUint8Array('YOUR_PUBLIC_VAPID_KEY_HERE')
+                        });
+                        console.log('Push subscription:', subscription);
+                    } catch (error) {
+                        console.log('Push subscription failed:', error);
+                    }
+                }
+            }
+        }
+
+        // Helper function for push subscription
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding)
+                .replace(/\-/g, '+')
+                .replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        // Request notification permission after login
+        setTimeout(() => {
+            if (document.getElementById('app-container').style.display === 'block') {
+                requestNotificationPermission();
+            }
+        }, 3000);
+
+        // Pull to Refresh
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const pullRefresh = document.getElementById('pull-refresh');
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            touchEndY = e.touches[0].clientY;
+            const pullDistance = touchEndY - touchStartY;
+            
+            if (pullDistance > 0 && window.scrollY === 0) {
+                pullRefresh.style.top = Math.min(pullDistance - 60, 20) + 'px';
+                if (pullDistance > 100) {
+                    pullRefresh.querySelector('i').style.transform = 'rotate(180deg)';
+                } else {
+                    pullRefresh.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const pullDistance = touchEndY - touchStartY;
+            
+            if (pullDistance > 100 && window.scrollY === 0) {
+                pullRefresh.classList.add('visible');
+                pullRefresh.querySelector('i').style.animation = 'spin 1s linear infinite';
+                
+                // Simulate refresh
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                pullRefresh.style.top = '-60px';
+                pullRefresh.querySelector('i').style.transform = 'rotate(0deg)';
+            }
+        }, { passive: true });
+
+        // Add to Home Screen prompt for iOS
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        function isInStandaloneMode() {
+            return ('standalone' in window.navigator) && (window.navigator.standalone);
+        }
+
+        if (isIOS() && !isInStandaloneMode()) {
+            setTimeout(() => {
+                installContainer.style.display = 'block';
+            }, 2000);
+        }
+
+        // Background Sync
+        async function registerBackgroundSync() {
+            if ('serviceWorker' in navigator && 'sync' in ServiceWorkerRegistration.prototype) {
+                const registration = await navigator.serviceWorker.ready;
+                try {
+                    await registration.sync.register('sync-posts');
+                    console.log('✅ Background sync registered');
+                } catch (error) {
+                    console.log('❌ Background sync failed:', error);
+                }
+            }
+        }
+
+        // Cache management
+        function clearOldCaches() {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => {
+                        if (name !== 'medicalbook-v1') {
+                            caches.delete(name);
+                        }
+                    });
+                });
+            }
+        }
+
+        // Show install instructions for different platforms
+        function showInstallInstructions() {
+            const ua = navigator.userAgent.toLowerCase();
+            let instructions = '';
+
+            if (ua.includes('android')) {
+                instructions = '📱 Android: اضغط على القائمة (⋮) ثم "إضافة إلى الشاشة الرئيسية"';
+            } else if (ua.includes('iphone') || ua.includes('ipad')) {
+                instructions = '📱 iOS: اضغط على أيقونة المشاركة (↑) ثم "إضافة إلى الشاشة الرئيسية"';
+            } else if (ua.includes('chrome')) {
+                instructions = '💻 Chrome: اضغط على أيقونة التثبيت في شريط العنوان';
+            } else if (ua.includes('firefox')) {
+                instructions = '💻 Firefox: اضغط على القائمة ثم "تثبيت"';
+            } else if (ua.includes('edge')) {
+                instructions = '💻 Edge: اضغط على القائمة (⋯) ثم "التطبيقات" ثم "تثبيت"';
+            }
+
+            if (instructions) {
+                console.log(instructions);
+            }
+        }
+
+        // Initialize PWA features
+        window.addEventListener('load', () => {
+            showInstallInstructions();
+            clearOldCaches();
+        });
+
+        // Update translations for new text
+        translations.ar.installApp = 'تثبيت التطبيق على هاتفك';
+        translations.ar.offline = 'أنت غير متصل بالإنترنت';
+        translations.en.installApp = 'Install App on Your Phone';
+        translations.en.offline = 'You are offline';
+        translations.fr.installApp = 'Installer l\'application';
+        translations.fr.offline = 'Vous êtes hors ligne';
+        translations.es.installApp = 'Instalar aplicación';
+        translations.es.offline = 'Estás desconectado';
+    </script>
+</body>
+</html>

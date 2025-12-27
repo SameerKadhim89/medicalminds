@@ -1,0 +1,37 @@
+{
+  "name": "MedicalMinds - عقول طبية متصلة",
+  "short_name": "MedicalMinds",
+  "description": "شبكة التواصل الطبي الاحترافية - منصة تجمع العقول الطبية المتميزة",
+  "start_url": "/medicalminds.html",
+  "display": "standalone",
+  "background_color": "#0088cc",
+  "theme_color": "#0088cc",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E879F9'/%3E%3Cstop offset='100%25' style='stop-color:%23FB7185'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' rx='40' fill='url(%23bg)'/%3E%3Ccircle cx='100' cy='100' r='70' fill='white' opacity='0.95'/%3E%3Ccircle cx='100' cy='100' r='65' stroke='white' stroke-width='6' fill='none'/%3E%3Cg transform='translate(100,70)'%3E%3Crect x='-6' y='-14' width='12' height='28' rx='2' fill='%23FB7185'/%3E%3Crect x='-14' y='-6' width='28' height='12' rx='2' fill='%23FB7185'/%3E%3C/g%3E%3Cpath d='M100 115 L85 100 Q78 93 78 85 Q78 77 85 73 Q92 70 100 80 Q108 70 115 73 Q122 77 122 85 Q122 93 115 100 Z' fill='%23FB7185'/%3E%3Ccircle cx='85' cy='90' r='7' fill='white' stroke='%23FB7185' stroke-width='2'/%3E%3Ccircle cx='115' cy='90' r='7' fill='white' stroke='%23FB7185' stroke-width='2'/%3E%3Ccircle cx='100' cy='102' r='7' fill='white' stroke='%23FB7185' stroke-width='2'/%3E%3Cpath d='M50 125 L70 125 L75 118 L80 132 L85 122 L90 127 L150 127' stroke='%23FB7185' stroke-width='2.5' fill='none'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E879F9'/%3E%3Cstop offset='100%25' style='stop-color:%23FB7185'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='100' fill='url(%23bg)'/%3E%3Ccircle cx='256' cy='256' r='180' fill='white' opacity='0.95'/%3E%3Ccircle cx='256' cy='256' r='170' stroke='white' stroke-width='15' fill='none'/%3E%3Cg transform='translate(256,180)'%3E%3Crect x='-15' y='-35' width='30' height='70' rx='5' fill='%23FB7185'/%3E%3Crect x='-35' y='-15' width='70' height='30' rx='5' fill='%23FB7185'/%3E%3C/g%3E%3Cpath d='M256 295 L218 257 Q200 239 200 218 Q200 197 218 186 Q236 178 256 204 Q276 178 294 186 Q312 197 312 218 Q312 239 294 257 Z' fill='%23FB7185'/%3E%3Ccircle cx='218' cy='231' r='18' fill='white' stroke='%23FB7185' stroke-width='5'/%3E%3Ccircle cx='294' cy='231' r='18' fill='white' stroke='%23FB7185' stroke-width='5'/%3E%3Ccircle cx='256' cy='262' r='18' fill='white' stroke='%23FB7185' stroke-width='5'/%3E%3Cpath d='M128 320 L180 320 L193 302 L206 338 L219 313 L232 326 L384 326' stroke='%23FB7185' stroke-width='6' fill='none'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='1920'%3E%3Crect fill='%23f0f2f5' width='1080' height='1920'/%3E%3Ctext x='540' y='960' font-family='Arial' font-size='80' fill='%23FB7185' text-anchor='middle' font-weight='bold'%3EMedicalMinds%3C/text%3E%3C/svg%3E",
+      "sizes": "1080x1920",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["medical", "health", "social", "productivity", "education"],
+  "lang": "ar",
+  "dir": "rtl",
+  "scope": "/",
+  "prefer_related_applications": false
+}
